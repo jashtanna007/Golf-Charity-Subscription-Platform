@@ -1,0 +1,152 @@
+export default {
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  theme: {
+    extend: {
+      colors: {
+        surface: {
+          DEFAULT: "#FAFCFF",
+          dim: "#F0F2F5",
+          bright: "#FFFFFF",
+          container: {
+            lowest: "#FFFFFF",
+            low: "#F5F7FA",
+            DEFAULT: "#EFF2F7",
+            high: "#E8ECF2",
+            highest: "#DDE2EB",
+          },
+          variant: "#E2E6EE",
+        },
+        primary: {
+          DEFAULT: "#059669",
+          container: "#ECFDF5",
+          fixed: "#34D399",
+          "fixed-dim": "#10B981",
+          dim: "#047857",
+        },
+        "on-primary": {
+          DEFAULT: "#FFFFFF",
+          container: "#065F46",
+          fixed: "#022C22",
+          "fixed-variant": "#064E3B",
+        },
+        secondary: {
+          DEFAULT: "#D97706",
+          container: "#FFFBEB",
+          fixed: "#FBBF24",
+          "fixed-dim": "#F59E0B",
+          dim: "#B45309",
+        },
+        "on-secondary": {
+          DEFAULT: "#FFFFFF",
+          container: "#78350F",
+          fixed: "#451A03",
+          "fixed-variant": "#92400E",
+        },
+        tertiary: {
+          DEFAULT: "#6366F1",
+          container: "#EEF2FF",
+          fixed: "#A5B4FC",
+          "fixed-dim": "#818CF8",
+          dim: "#4F46E5",
+        },
+        "on-tertiary": {
+          DEFAULT: "#FFFFFF",
+          container: "#3730A3",
+        },
+        "on-surface": {
+          DEFAULT: "#0F172A",
+          variant: "#475569",
+        },
+        "on-background": "#0F172A",
+        outline: {
+          DEFAULT: "#94A3B8",
+          variant: "#CBD5E1",
+        },
+        error: {
+          DEFAULT: "#DC2626",
+          container: "#FEF2F2",
+        },
+        "on-error": {
+          DEFAULT: "#FFFFFF",
+          container: "#991B1B",
+        },
+        inverse: {
+          surface: "#1E293B",
+          "on-surface": "#F1F5F9",
+          primary: "#4ADE80",
+        },
+      },
+      fontFamily: {
+        display: ["Manrope", "sans-serif"],
+        headline: ["Manrope", "sans-serif"],
+        body: ["Inter", "sans-serif"],
+        label: ["Inter", "sans-serif"],
+      },
+      fontSize: {
+        "display-lg": ["3.5rem", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "800" }],
+        "display-md": ["2.75rem", { lineHeight: "1.15", letterSpacing: "-0.02em", fontWeight: "700" }],
+        "display-sm": ["2.25rem", { lineHeight: "1.2", letterSpacing: "-0.01em", fontWeight: "700" }],
+        "headline-lg": ["2rem", { lineHeight: "1.25", fontWeight: "700" }],
+        "headline-md": ["1.75rem", { lineHeight: "1.3", fontWeight: "600" }],
+        "headline-sm": ["1.5rem", { lineHeight: "1.35", fontWeight: "600" }],
+        "title-lg": ["1.375rem", { lineHeight: "1.4", fontWeight: "600" }],
+        "title-md": ["1rem", { lineHeight: "1.5", fontWeight: "600" }],
+        "title-sm": ["0.875rem", { lineHeight: "1.5", fontWeight: "600" }],
+        "body-lg": ["1rem", { lineHeight: "1.6", fontWeight: "400" }],
+        "body-md": ["0.875rem", { lineHeight: "1.6", fontWeight: "400" }],
+        "body-sm": ["0.75rem", { lineHeight: "1.5", fontWeight: "400" }],
+        "label-lg": ["0.875rem", { lineHeight: "1.4", fontWeight: "600", letterSpacing: "0.02em" }],
+        "label-md": ["0.75rem", { lineHeight: "1.4", fontWeight: "600", letterSpacing: "0.04em" }],
+        "label-sm": ["0.6875rem", { lineHeight: "1.4", fontWeight: "600", letterSpacing: "0.05em" }],
+      },
+      borderRadius: {
+        xs: "0.125rem",
+        sm: "0.25rem",
+        md: "0.375rem",
+        lg: "0.5rem",
+        xl: "0.75rem",
+        "2xl": "1rem",
+        "3xl": "1.5rem",
+      },
+      boxShadow: {
+        "elevation-1": "0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.06)",
+        "elevation-2": "0 4px 6px -1px rgba(15, 23, 42, 0.05), 0 2px 4px -2px rgba(15, 23, 42, 0.05)",
+        "elevation-3": "0 10px 15px -3px rgba(15, 23, 42, 0.06), 0 4px 6px -4px rgba(15, 23, 42, 0.05)",
+        "elevation-4": "0 20px 40px -8px rgba(15, 23, 42, 0.08)",
+        "glow-primary": "0 0 20px rgba(5, 150, 105, 0.15)",
+        "glow-secondary": "0 0 20px rgba(217, 119, 6, 0.15)",
+      },
+      animation: {
+        "fade-in": "fadeIn 0.5s ease-out",
+        "slide-up": "slideUp 0.5s ease-out",
+        "slide-down": "slideDown 0.3s ease-out",
+        "scale-in": "scaleIn 0.3s ease-out",
+        float: "float 6s ease-in-out infinite",
+        pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+      },
+      keyframes: {
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        slideUp: {
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        slideDown: {
+          "0%": { opacity: "0", transform: "translateY(-10px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        scaleIn: {
+          "0%": { opacity: "0", transform: "scale(0.95)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+      },
+    },
+  },
+  plugins: [],
+};

@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: "Inter", sans-serif;
+    background-color: #FAFCFF;
+    color: #0F172A;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Manrope", sans-serif;
+  }
+
+  ::selection {
+    background-color: rgba(5, 150, 105, 0.15);
+    color: #065F46;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #F5F7FA;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #CBD5E1;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #94A3B8;
+  }
+}
+
+@layer components {
+  .glass-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(226, 232, 240, 0.5);
+  }
+
+  .gradient-primary {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  }
+
+  .gradient-secondary {
+    background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  }
+
+  .gradient-hero {
+    background: radial-gradient(ellipse at 20% 50%, rgba(5, 150, 105, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(99, 102, 241, 0.04) 0%, transparent 50%),
+                #FAFCFF;
+  }
+
+  .gradient-mesh {
+    background: 
+      radial-gradient(at 40% 20%, rgba(5, 150, 105, 0.05) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, rgba(217, 119, 6, 0.04) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, rgba(99, 102, 241, 0.04) 0px, transparent 50%),
+      #FAFCFF;
+  }
+
+  .text-gradient-primary {
+    background: linear-gradient(135deg, #059669, #047857);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #F59E0B, #D97706);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 bg-surface-container-lowest rounded-lg 
+           text-on-surface font-body text-body-md
+           outline-none transition-all duration-200
+           border border-outline-variant/30
+           focus:border-primary focus:ring-2 focus:ring-primary/10;
+  }
+
+  .sidebar-link {
+    @apply flex items-center gap-3 px-4 py-2.5 rounded-lg
+           text-on-surface-variant font-body text-body-md
+           transition-all duration-200
+           hover:bg-surface-container hover:text-on-surface;
+  }
+
+  .sidebar-link-active {
+    @apply bg-primary-container text-on-primary-container font-medium;
+  }
+
+  .stat-card {
+    @apply bg-white rounded-xl p-6 shadow-elevation-1 card-hover;
+  }
+
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8 xl:px-12;
+  }
+
+  .page-container {
+    @apply max-w-7xl mx-auto section-padding py-8;
+  }
+}
+
+@layer utilities {
+  .animate-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+}
