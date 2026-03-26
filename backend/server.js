@@ -20,8 +20,8 @@ app.use("/api/webhooks/stripe", webhookRoutes);
 
 app.use(cors({
   origin: [
-    "http://localhost:5173", 
-    "https://golf-charity-subscription-platform-theta-two.vercel.app" // Your Vercel URL from the screenshot
+    "http://localhost:5173",
+    "https://golf-charity-subscription-platform-theta-two.vercel.app"
   ],
   credentials: true
 }));
