@@ -16,7 +16,7 @@ const webhookRoutes = require("./routes/webhooks");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use("/api/webhooks/stripe", webhookRoutes);
+app.use("/api/webhooks", webhookRoutes);
 
 app.use(cors({
   origin: [
