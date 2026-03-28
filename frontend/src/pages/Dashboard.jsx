@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Target, Trophy, Heart, CreditCard, TrendingUp, Calendar, CheckCircle } from "lucide-react";
+import { Target, Trophy, Heart, CreditCard, TrendingUp, CheckCircle } from "lucide-react";
 import StatsCard from "@/components/shared/StatsCard";
 import ScoreEntryForm from "@/components/shared/ScoreEntryForm";
 import DrawResultCard from "@/components/shared/DrawResultCard";
@@ -11,12 +11,11 @@ import useAuthStore from "@/stores/authStore";
 import useScoreStore from "@/stores/scoreStore";
 import useSubscriptionStore from "@/stores/subscriptionStore";
 import useDrawStore from "@/stores/drawStore";
-import { formatDate, formatCurrency, getSubscriptionStatusColor } from "@/lib/utils";
+import { formatDate } from "@/lib/utils";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import api from "@/lib/api";
 
 function Dashboard() {
-  const { user } = useAuthStore();
+  const { user, initialize } = useAuthStore(); 
   const { scores, fetchScores } = useScoreStore();
   const { subscription, fetchSubscription } = useSubscriptionStore();
   const { draws, currentDraw, fetchDraws, fetchCurrentDraw } = useDrawStore();
@@ -25,11 +24,31 @@ function Dashboard() {
   const [verifyBanner, setVerifyBanner] = useState(null);
 
   useEffect(() => {
+
+    const isSuccess = searchParams.get("subscription") === "success";
+    
+    if (isSuccess) {
+      setVerifyBanner({
+        type: "success",
+        message: "Subscription successful! Welcome to the Philanthropic Green community."
+      });
+      
+
+      initialize();
+      fetchSubscription();
+
+
+      setTimeout(() => {
+        setSearchParams({}, { replace: true });
+        setVerifyBanner(null);
+      }, 5000);
+    }
+
     fetchScores();
     fetchSubscription();
     fetchDraws();
     fetchCurrentDraw();
-  }, []);
+  }, [searchParams, setSearchParams, initialize, fetchSubscription, fetchScores, fetchDraws, fetchCurrentDraw]);
 
   const averageScore = scores.length > 0
     ? (scores.reduce((sum, s) => sum + s.score, 0) / scores.length).toFixed(1)
@@ -37,23 +56,20 @@ function Dashboard() {
 
   return (
     <div className="page-container">
+      {/* Dynamic Success/Verify Banner */}
       {verifyBanner && (
         <motion.div
-          initial={{ opacity: 0, y: -10 }}
+          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className={`flex items-center gap-3 p-4 rounded-xl mb-6 ${
+          exit={{ opacity: 0, y: -20 }}
+          className={`flex items-center gap-3 p-4 rounded-xl mb-6 shadow-lg border ${
             verifyBanner.type === "success"
-              ? "bg-primary-container text-on-primary-container"
-              : verifyBanner.type === "error"
-              ? "bg-error-container text-on-error-container"
+              ? "bg-green-50 border-green-200 text-green-800"
               : "bg-surface-container text-on-surface"
           }`}
         >
-          {verifyBanner.type === "loading" && (
-            <div className="w-5 h-5 border-2 border-current/20 border-t-current rounded-full animate-spin shrink-0" />
-          )}
-          {verifyBanner.type === "success" && <CheckCircle className="w-5 h-5 shrink-0" />}
-          <p className="text-body-md font-medium">{verifyBanner.message}</p>
+          <CheckCircle className="w-5 h-5 shrink-0 text-green-600" />
+          <p className="text-body-md font-semibold">{verifyBanner.message}</p>
         </motion.div>
       )}
 
@@ -93,8 +109,8 @@ function Dashboard() {
           icon={CreditCard}
           label="Subscription"
           value={
-            <Badge className="mt-1" variant={subscription?.status === "active" ? "success" : "warning"}>
-              {subscription?.status || "Inactive"}
+            <Badge className="mt-1" variant={subscription?.status === "active" || user?.subscription_status === "active" ? "success" : "warning"}>
+              {subscription?.status || user?.subscription_status || "Inactive"}
             </Badge>
           }
           subtext={subscription ? `${subscription.plan_type} plan` : "No active plan"}
